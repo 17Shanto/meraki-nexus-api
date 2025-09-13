@@ -2,7 +2,8 @@ import { model, Schema } from "mongoose";
 import { IUser } from "./user.interface";
 
 const userSchema = new Schema<IUser>({
-  name: { type: String, required: true, trim: true, min: 3, max: 255 },
+  firstName: { type: String, required: true, trim: true, min: 2, max: 30 },
+  lastName: { type: String, required: true, trim: true, min: 2, max: 30 },
   email: {
     type: String,
     required: true,
