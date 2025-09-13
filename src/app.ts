@@ -2,6 +2,8 @@ import express, { Application, Request, Response } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import routes from "./modules/routes";
+import { globalErrorHandler } from "./middleware/globalErrorHandler";
+import { notFoundRoute } from "./middleware/notFoundRoute";
 const app: Application = express();
 
 app.use(express.json());
@@ -116,5 +118,8 @@ app.get("/", (req: Request, res: Response) => {
     </html>
   `);
 });
+
+app.use(globalErrorHandler);
+app.use(notFoundRoute);
 
 export default app;

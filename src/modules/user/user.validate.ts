@@ -2,7 +2,11 @@ import z from "zod";
 import { UserRole } from "./user.constrain";
 
 const userCreateZodSchema = z.object({
-  name: z
+  firstName: z
+    .string()
+    .min(2, "Name Must be in 2 characters")
+    .max(30, "Name can't be more that 30 characters"),
+  lastName: z
     .string()
     .min(2, "Name Must be in 2 characters")
     .max(30, "Name can't be more that 30 characters"),
