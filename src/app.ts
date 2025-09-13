@@ -14,7 +14,7 @@ app.get("/", (req: Request, res: Response) => {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Mango Management API 🥭</title>
+        <title>Meraki Nexus API ☯️</title>
         <style>
             body {
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
