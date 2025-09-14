@@ -61,6 +61,14 @@ const getAllUser = async () => {
   return users;
 };
 
+const updateUserById = async (userId: string, body: any) => {
+  const updatedUser = await User.findByIdAndUpdate(userId, body, { new: true });
+  if (!updatedUser) {
+    throw new AppError(404, "User not found to update");
+  }
+  return updatedUser;
+};
+
 // const deleteUserById = async ( userId:string)
 
 export const userService = {
@@ -68,4 +76,5 @@ export const userService = {
   loginUser,
   getUserById,
   getAllUser,
+  updateUserById,
 };

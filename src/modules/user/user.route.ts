@@ -6,6 +6,7 @@ import {
   getUserById,
   loginUser,
   registerUser,
+  updateUserById,
 } from "./user.controller";
 import { auth } from "../../middleware/auth";
 import { UserRole } from "./user.constrain";
@@ -26,5 +27,11 @@ userRoute.post(
 userRoute.get("/:userId", auth([UserRole.Admin, UserRole.User]), getUserById);
 
 userRoute.get("/", auth([UserRole.Admin]), getAllUser);
+
+userRoute.patch(
+  "/:userId",
+  auth([UserRole.Admin, UserRole.User]),
+  updateUserById
+);
 
 export default userRoute;

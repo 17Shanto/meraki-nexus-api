@@ -61,4 +61,16 @@ const getAllUser = async (req: Request, res: Response) => {
   });
 };
 
-export { registerUser, loginUser, getUserById, getAllUser };
+const updateUserById = async (req: Request, res: Response) => {
+  const userId = req.params.userId;
+  const body = req.body;
+  const data = await userService.updateUserById(userId, body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "User updated successfully",
+    data,
+  });
+};
+
+export { registerUser, loginUser, getUserById, getAllUser, updateUserById };
