@@ -9,7 +9,7 @@ const registerUser = catchAsync(async (req: Request, res: Response) => {
   const payload = req.body;
   const data = await userService.registerUser(payload);
   sendResponse(res, {
-    statusCode: httpStatus.OK,
+    statusCode: httpStatus.CREATED,
     success: true,
     message: "User Registered Successfully",
     data,
