@@ -1,3 +1,5 @@
+import { Types } from "mongoose";
+
 export interface IScore {
   aesthetic_score: number;
   sentiment_score: number;
@@ -16,4 +18,5 @@ export interface INexus {
   created_year: string;
   medium: string;
   tags: string[];
+  user: Types.ObjectId;
 }

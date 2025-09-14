@@ -25,6 +25,11 @@ const nexusSchema = new Schema<INexus>(
     created_year: { type: String, required: true, trim: true },
     medium: { type: String, required: true, trim: true },
     tags: { type: [{ type: String, trim: true }], required: true },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
   },
   {
     timestamps: true,
