@@ -2,6 +2,7 @@ import { Router } from "express";
 import { validateRequest } from "../../middleware/validateRequest";
 import { userZodSchema } from "./user.validate";
 import {
+  deleteUserById,
   getAllUser,
   getUserById,
   loginUser,
@@ -32,6 +33,12 @@ userRoute.patch(
   "/:userId",
   auth([UserRole.Admin, UserRole.User]),
   updateUserById
+);
+
+userRoute.delete(
+  "/:userId",
+  auth([UserRole.Admin, UserRole.User]),
+  deleteUserById
 );
 
 export default userRoute;

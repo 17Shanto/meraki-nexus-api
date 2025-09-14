@@ -73,4 +73,22 @@ const updateUserById = async (req: Request, res: Response) => {
   });
 };
 
-export { registerUser, loginUser, getUserById, getAllUser, updateUserById };
+const deleteUserById = async (req: Request, res: Response) => {
+  const userId = req.params.userId;
+  const data = await userService.deleteUserById(userId);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "User deleted successfully",
+    data,
+  });
+};
+
+export {
+  registerUser,
+  loginUser,
+  getUserById,
+  getAllUser,
+  updateUserById,
+  deleteUserById,
+};

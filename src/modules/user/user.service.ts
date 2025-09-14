@@ -69,6 +69,14 @@ const updateUserById = async (userId: string, body: any) => {
   return updatedUser;
 };
 
+const deleteUserById = async (userId: string) => {
+  const deletedUser = await User.findByIdAndDelete(userId);
+  if (!deletedUser) {
+    throw new AppError(404, "User not found to update");
+  }
+  return deletedUser;
+};
+
 // const deleteUserById = async ( userId:string)
 
 export const userService = {
@@ -77,4 +85,5 @@ export const userService = {
   getUserById,
   getAllUser,
   updateUserById,
+  deleteUserById,
 };
