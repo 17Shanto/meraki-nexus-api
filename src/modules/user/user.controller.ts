@@ -51,4 +51,14 @@ const getUserById = async (req: Request, res: Response) => {
   });
 };
 
-export { registerUser, loginUser, getUserById };
+const getAllUser = async (req: Request, res: Response) => {
+  const data = await userService.getAllUser();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Users retrieved successfully",
+    data,
+  });
+};
+
+export { registerUser, loginUser, getUserById, getAllUser };

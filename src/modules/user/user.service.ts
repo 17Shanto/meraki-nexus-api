@@ -45,16 +45,27 @@ const loginUser = async (payload: IUser) => {
   };
 };
 
-const getUserById = async (id: string) => {
-  const user = await User.findById(id);
+const getUserById = async (userId: string) => {
+  const user = await User.findById(userId);
   if (!user) {
     throw new AppError(404, "User not Found");
   }
   return user;
 };
 
+const getAllUser = async () => {
+  const users = await User.find();
+  if (!users) {
+    throw new AppError(404, "Users not Found");
+  }
+  return users;
+};
+
+// const deleteUserById = async ( userId:string)
+
 export const userService = {
   registerUser,
   loginUser,
   getUserById,
+  getAllUser,
 };
