@@ -18,7 +18,6 @@ const userCreateZodSchema = z.object({
 
 const userLoginZodSchema = z.object({
   email: z.email({ error: "Invalid email" }),
-
   password: z.string(),
 });
 
