@@ -40,6 +40,19 @@ const loginUser = async (req: Request, res: Response) => {
   });
 };
 
+const refreshToken = async (req: Request, res: Response) => {
+  const refreshToken = req.cookies.refreshToken;
+
+  const data = await userService.refreshToken(refreshToken);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "User Registered Successfully",
+    data,
+  });
+};
+
 const getUserById = async (req: Request, res: Response) => {
   const userId = req.params.userId;
   const data = await userService.getUserById(userId);
@@ -91,4 +104,5 @@ export {
   getAllUser,
   updateUserById,
   deleteUserById,
+  refreshToken,
 };

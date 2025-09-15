@@ -45,6 +45,29 @@ const loginUser = async (payload: IUser) => {
   };
 };
 
+const refreshToken = async (refreshToken: string) => {
+  const verifyRefreshToken = jwt.verify(
+    refreshToken,
+    config.jwt.jwt_refresh_secret as string
+  ) as JwtPayload;
+
+  const isUserExist = await User.findOne({ email: verifyRefreshToken.email });
+  if (!isUserExist) throw new AppError(404, "User Not Found");
+
+  const jwtPayload = {
+    email: isUserExist.email,
+    role: isUserExist.role,
+  };
+
+  const accessToken = jwt.sign(
+    jwtPayload,
+    config.jwt.jwt_access_secret as string,
+    { expiresIn: config.jwt.jwt_access_expires } as SignOptions
+  );
+
+  return { accessToken };
+};
+
 const getUserById = async (userId: string) => {
   const user = await User.findById(userId);
   if (!user) {
@@ -86,4 +109,5 @@ export const userService = {
   getAllUser,
   updateUserById,
   deleteUserById,
+  refreshToken,
 };

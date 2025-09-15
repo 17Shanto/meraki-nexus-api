@@ -6,6 +6,7 @@ import {
   getAllUser,
   getUserById,
   loginUser,
+  refreshToken,
   registerUser,
   updateUserById,
 } from "./user.controller";
@@ -24,6 +25,8 @@ userRoute.post(
   validateRequest(userZodSchema.userLoginZodSchema),
   loginUser
 );
+
+userRoute.post("/refresh-token", refreshToken);
 
 userRoute.get(
   "/:userId",
