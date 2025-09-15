@@ -16,7 +16,7 @@ const registerUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const loginUser = async (req: Request, res: Response) => {
+const loginUser = catchAsync(async (req: Request, res: Response) => {
   const payload = req.body;
 
   const data = await userService.loginUser(payload);
@@ -38,9 +38,9 @@ const loginUser = async (req: Request, res: Response) => {
     message: "User Login Successfully",
     data,
   });
-};
+});
 
-const refreshToken = async (req: Request, res: Response) => {
+const refreshToken = catchAsync(async (req: Request, res: Response) => {
   const refreshToken = req.cookies.refreshToken;
 
   const data = await userService.refreshToken(refreshToken);
@@ -51,9 +51,9 @@ const refreshToken = async (req: Request, res: Response) => {
     message: "User Registered Successfully",
     data,
   });
-};
+});
 
-const getUserById = async (req: Request, res: Response) => {
+const getUserById = catchAsync(async (req: Request, res: Response) => {
   const userId = req.params.userId;
   const data = await userService.getUserById(userId);
   sendResponse(res, {
@@ -62,9 +62,9 @@ const getUserById = async (req: Request, res: Response) => {
     message: "User Retrieved successfully",
     data,
   });
-};
+});
 
-const getAllUser = async (req: Request, res: Response) => {
+const getAllUser = catchAsync(async (req: Request, res: Response) => {
   const data = await userService.getAllUser();
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -72,9 +72,9 @@ const getAllUser = async (req: Request, res: Response) => {
     message: "Users retrieved successfully",
     data,
   });
-};
+});
 
-const updateUserById = async (req: Request, res: Response) => {
+const updateUserById = catchAsync(async (req: Request, res: Response) => {
   const userId = req.params.userId;
   const body = req.body;
   const data = await userService.updateUserById(userId, body);
@@ -84,9 +84,9 @@ const updateUserById = async (req: Request, res: Response) => {
     message: "User updated successfully",
     data,
   });
-};
+});
 
-const deleteUserById = async (req: Request, res: Response) => {
+const deleteUserById = catchAsync(async (req: Request, res: Response) => {
   const userId = req.params.userId;
   const data = await userService.deleteUserById(userId);
   sendResponse(res, {
@@ -95,7 +95,7 @@ const deleteUserById = async (req: Request, res: Response) => {
     message: "User deleted successfully",
     data,
   });
-};
+});
 
 export {
   registerUser,
