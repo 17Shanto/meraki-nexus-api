@@ -1,5 +1,10 @@
-import { Types } from "mongoose";
+import { Document, Types } from "mongoose";
 
+export interface IArtist {
+  firstName: string;
+  lastName: string;
+  email: string;
+}
 export interface IScore {
   aesthetic_score: number;
   sentiment_score: number;
@@ -7,7 +12,7 @@ export interface IScore {
   art_evaluation_score: number;
 }
 
-export interface INexus {
+export interface INexus extends Document {
   title: string;
   artist: string;
   image_url: string;
@@ -18,5 +23,5 @@ export interface INexus {
   created_year: string;
   medium: string;
   tags: string[];
-  user: Types.ObjectId;
+  user: Types.ObjectId | IArtist;
 }

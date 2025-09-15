@@ -1,5 +1,7 @@
 import { model, Schema } from "mongoose";
 import { IUser } from "./user.interface";
+import { NextFunction } from "express";
+import Nexus from "../nexus/nexus.model";
 
 const userSchema = new Schema<IUser>(
   {
@@ -26,7 +28,7 @@ const userSchema = new Schema<IUser>(
     role: {
       type: String,
       enum: {
-        values: ["Admin", "User"],
+        values: ["Admin", "User", "Artist"],
         message: "{VALUE} is not acceptable",
       },
       required: true,
@@ -38,5 +40,12 @@ const userSchema = new Schema<IUser>(
   }
 );
 
-const User = model<IUser>("user", userSchema);
+userSchema.post("findOneAndDelete", async function (doc, next: NextFunction) {
+  if (doc) {
+    await Nexus.deleteMany({ user: doc._id });
+  }
+  next();
+});
+
+const User = model<IUser>("User", userSchema);
 export default User;

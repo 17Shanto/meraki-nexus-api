@@ -31,13 +31,13 @@ userRoute.get("/", auth([UserRole.Admin]), getAllUser);
 
 userRoute.patch(
   "/:userId",
-  auth([UserRole.Admin, UserRole.User]),
+  auth([UserRole.Admin, UserRole.User, UserRole.Artist]),
   updateUserById
 );
 
 userRoute.delete(
   "/:userId",
-  auth([UserRole.Admin, UserRole.User]),
+  auth([UserRole.Admin, UserRole.Artist]),
   deleteUserById
 );
 

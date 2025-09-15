@@ -15,4 +15,13 @@ const createNexus = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-export { createNexus };
+const getAllNexus = catchAsync(async (req: Request, res: Response) => {
+  const data = await nexusService.getAllNexus();
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    data,
+  });
+});
+
+export { createNexus, getAllNexus };
