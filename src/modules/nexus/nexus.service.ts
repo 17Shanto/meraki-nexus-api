@@ -32,8 +32,26 @@ const getNexusById = async (nexusId: string) => {
   return nexus;
 };
 
+const updateNexusById = async (nexusId: string, body: any) => {
+  const data = await Nexus.findByIdAndUpdate(nexusId, body, { new: true });
+  if (!data) {
+    throw new AppError(404, "Nexus not found");
+  }
+  return data;
+};
+
+const deleteNexusById = async (nexusId: string) => {
+  const data = await Nexus.findByIdAndDelete(nexusId);
+  if (!data) {
+    throw new AppError(404, "Nexus not found");
+  }
+  return data;
+};
+
 export const nexusService = {
   createNexus,
   getAllNexus,
   getNexusById,
+  updateNexusById,
+  deleteNexusById,
 };

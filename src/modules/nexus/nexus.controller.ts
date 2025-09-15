@@ -20,6 +20,7 @@ const getAllNexus = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
+    message: "All Nexus retrieved successfully",
     data,
   });
 });
@@ -30,8 +31,32 @@ const getNexusById = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
+    message: "retrieved nexus by id successfully",
     data,
   });
 });
 
-export { createNexus, getAllNexus, getNexusById };
+const updateNexusById = catchAsync(async (req: Request, res: Response) => {
+  const nexusId = req.params.nexusId;
+  const body = req.body;
+  const data = await nexusService.updateNexusById(nexusId, body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "successfully updated nexus by id",
+    data,
+  });
+});
+
+const deleteNexusById = catchAsync(async (req: Request, res: Response) => {
+  const nexusId = req.params.nexusId;
+  const data = await nexusService.deleteNexusById(nexusId);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "deleted nexus by id",
+    data,
+  });
+});
+
+export { createNexus, getAllNexus, getNexusById, updateNexusById };
