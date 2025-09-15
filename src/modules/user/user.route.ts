@@ -25,7 +25,11 @@ userRoute.post(
   loginUser
 );
 
-userRoute.get("/:userId", auth([UserRole.Admin, UserRole.User]), getUserById);
+userRoute.get(
+  "/:userId",
+  auth([UserRole.Admin, UserRole.Artist, UserRole.User]),
+  getUserById
+);
 
 userRoute.get("/", auth([UserRole.Admin]), getAllUser);
 
@@ -37,7 +41,7 @@ userRoute.patch(
 
 userRoute.delete(
   "/:userId",
-  auth([UserRole.Admin, UserRole.Artist]),
+  auth([UserRole.Admin, UserRole.User, UserRole.Artist]),
   deleteUserById
 );
 
