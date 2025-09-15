@@ -24,7 +24,16 @@ const getAllNexus = async () => {
   }));
 };
 
+const getNexusById = async (nexusId: string) => {
+  const nexus = await Nexus.findById(nexusId);
+  if (!nexus) {
+    throw new AppError(404, "Nexus not found");
+  }
+  return nexus;
+};
+
 export const nexusService = {
   createNexus,
   getAllNexus,
+  getNexusById,
 };

@@ -24,4 +24,14 @@ const getAllNexus = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-export { createNexus, getAllNexus };
+const getNexusById = catchAsync(async (req: Request, res: Response) => {
+  const nexusId = req.params.nexusId;
+  const data = await nexusService.getNexusById(nexusId);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    data,
+  });
+});
+
+export { createNexus, getAllNexus, getNexusById };

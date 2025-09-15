@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { validateRequest } from "../../middleware/validateRequest";
 import { nexusUpdateSchema } from "./nexus.validate";
-import { createNexus, getAllNexus } from "./nexus.controller";
+import { createNexus, getAllNexus, getNexusById } from "./nexus.controller";
 import { auth } from "../../middleware/auth";
 import { UserRole } from "../user/user.constrain";
 
@@ -13,5 +13,13 @@ nexusRoute.post(
   auth([UserRole.Admin, UserRole.Artist]),
   createNexus
 );
-
-nexusRoute.get("/", getAllNexus);
+nexusRoute.get(
+  "/",
+  auth([UserRole.Admin, UserRole.Artist, UserRole.User]),
+  getAllNexus
+);
+nexusRoute.get(
+  "/:nexusId",
+  auth([UserRole.Admin, UserRole.Artist, UserRole.User]),
+  getNexusById
+);
