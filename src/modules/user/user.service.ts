@@ -44,7 +44,6 @@ const loginUser = async (payload: IUser) => {
   return {
     accessToken,
     refreshToken,
-    isUserExist,
     user: userWithoutPassword,
   };
 };
