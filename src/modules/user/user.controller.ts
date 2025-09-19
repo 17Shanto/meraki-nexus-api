@@ -20,7 +20,6 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
   const payload = req.body;
 
   const data = await userService.loginUser(payload);
-  console.log(data);
 
   res.cookie("accessToken", data.accessToken, {
     secure: config.node_env !== "development",
