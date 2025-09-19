@@ -39,9 +39,13 @@ const loginUser = async (payload: IUser) => {
     { expiresIn: config.jwt.jwt_refresh_expires } as SignOptions
   );
 
+  const { password, ...userWithoutPassword } = isUserExist.toObject();
+
   return {
     accessToken,
     refreshToken,
+    isUserExist,
+    user: userWithoutPassword,
   };
 };
 
