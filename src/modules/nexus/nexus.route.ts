@@ -3,6 +3,7 @@ import { validateRequest } from "../../middleware/validateRequest";
 import { nexusUpdateSchema } from "./nexus.validate";
 import {
   createNexus,
+  deleteNexusById,
   getAllNexus,
   getNexusById,
   updateNexusById,
@@ -38,5 +39,5 @@ nexusRoute.patch(
 nexusRoute.delete(
   "/:nexusId",
   auth([UserRole.Admin, UserRole.Artist]),
-  updateNexusById
+  deleteNexusById
 );

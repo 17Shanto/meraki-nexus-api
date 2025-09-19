@@ -59,4 +59,10 @@ const deleteNexusById = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-export { createNexus, getAllNexus, getNexusById, updateNexusById };
+export {
+  createNexus,
+  getAllNexus,
+  getNexusById,
+  updateNexusById,
+  deleteNexusById,
+};
