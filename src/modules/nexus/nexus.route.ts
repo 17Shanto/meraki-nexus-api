@@ -21,7 +21,7 @@ nexusRoute.post(
 );
 nexusRoute.get(
   "/",
-  auth([UserRole.Admin, UserRole.Artist, UserRole.User]),
+  //auth([UserRole.Admin, UserRole.Artist, UserRole.User]),
   getAllNexus
 );
 nexusRoute.get(
