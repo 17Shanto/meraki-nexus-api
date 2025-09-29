@@ -30,6 +30,7 @@ const nexusSchema = new Schema<INexus>(
       ref: "User",
       required: true,
     },
+    available: { type: Number, required: true, min: 0 },
   },
   {
     timestamps: true,

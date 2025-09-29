@@ -24,4 +24,5 @@ export interface INexus extends Document {
   medium: string;
   tags: string[];
   user: Types.ObjectId | IArtist;
+  available: number;
 }

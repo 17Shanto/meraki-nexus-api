@@ -27,6 +27,7 @@ export const nexusSchema = z
     user: z
       .string()
       .regex(/^[0-9a-fA-F]{24}$/, "must be a valid MongoDB ObjectId"),
+    available: z.number().min(0),
   })
   .strict();
 
