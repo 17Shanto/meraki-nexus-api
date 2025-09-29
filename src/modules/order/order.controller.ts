@@ -15,4 +15,25 @@ const createOrder = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-export { createOrder };
+const getOrderByUserId = catchAsync(async (req: Request, res: Response) => {
+  const userId = req.params.userId;
+  const data = await orderService.getOrderByUserId(userId);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Retrieved order by user id",
+    data,
+  });
+});
+
+const getOrderByNexusId = catchAsync(async (req: Request, res: Response) => {
+  const nexusId = req.params.nexusId;
+  const data = await orderService.getOrderByNexusId(nexusId);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Retrieved order by nexus id",
+    data,
+  });
+});
+export { createOrder, getOrderByUserId, getOrderByNexusId };
