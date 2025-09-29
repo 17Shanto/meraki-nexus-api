@@ -2,19 +2,25 @@ import { model, Schema } from "mongoose";
 import { IOrder } from "./order.interface";
 import Nexus from "../nexus/nexus.model";
 import AppError from "../../error/AppError";
-const orderSchema = new Schema<IOrder>({
-  nexus: {
-    type: Schema.Types.ObjectId,
-    ref: "Nexus",
-    required: true,
+const orderSchema = new Schema<IOrder>(
+  {
+    nexus: {
+      type: Schema.Types.ObjectId,
+      ref: "Nexus",
+      required: true,
+    },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    quantity: { type: Number, required: true },
   },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  quantity: { type: Number, required: true },
-});
+  {
+    timestamps: true,
+    versionKey: false,
+  }
+);
 
 orderSchema.pre<IOrder>("save", async function (next) {
   try {
