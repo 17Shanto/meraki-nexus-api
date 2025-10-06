@@ -25,4 +25,5 @@ export interface INexus extends Document {
   tags: string[];
   user: Types.ObjectId | IArtist;
   available: number;
+  price_per_unit: number;
 }

@@ -28,6 +28,7 @@ export const nexusSchema = z
       .string()
       .regex(/^[0-9a-fA-F]{24}$/, "must be a valid MongoDB ObjectId"),
     available: z.number().min(0),
+    price_per_unit: z.number().min(0),
   })
   .strict();
 

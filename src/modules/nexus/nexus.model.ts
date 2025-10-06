@@ -31,6 +31,7 @@ const nexusSchema = new Schema<INexus>(
       required: true,
     },
     available: { type: Number, required: true, min: 0 },
+    price_per_unit: { type: Number, required: true, min: 0 },
   },
   {
     timestamps: true,
