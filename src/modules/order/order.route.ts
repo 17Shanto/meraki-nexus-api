@@ -16,7 +16,7 @@ orderRoute.post(
 );
 
 orderRoute.get(
-  "/:userId",
+  "/user/:userId",
   auth([UserRole.Admin, UserRole.Artist, UserRole.User]),
   getOrderByUserId
 );

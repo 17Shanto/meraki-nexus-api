@@ -1,4 +1,5 @@
 import AppError from "../../error/AppError";
+import Nexus from "../nexus/nexus.model";
 import { IOrder } from "./order.interface";
 import Order from "./order.model";
 import axios from "axios";
@@ -11,18 +12,25 @@ const createOrder = async (payload) => {
     senderPrivateKey: payload.senderPrivateKey,
   };
 
+  const nexus = await Nexus.findById(payload.nexus);
+  const nexus_quantity = nexus?.available;
   const apiUrl = "https://meraki-nexus-blockchain-api.vercel.app/api/payment";
-  const response = await axios.post(apiUrl, payment);
-  if (response.txHash) {
-    const order = {
-      nexus: payload.nexus,
-      user: payload.user,
-      quantity: payload.quantity,
-    };
-    const data = await Order.create(order);
-    return data;
+  if (nexus_quantity >= payload.quantity) {
+    const response = await axios.post(apiUrl, payment);
+    console.log(response.data);
+    if (response.data.txHash) {
+      const order = {
+        nexus: payload.nexus,
+        user: payload.user,
+        quantity: payload.quantity,
+      };
+      const data = await Order.create(order);
+      return data;
+    } else {
+      throw new AppError(404, "Payment failed");
+    }
   } else {
-    throw new AppError(404, "Payment failed");
+    throw new AppError(404, "Quantity of nexus is not available");
   }
 };
 
