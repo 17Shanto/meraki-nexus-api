@@ -12,6 +12,11 @@ export interface IScore {
   art_evaluation_score: number;
 }
 
+export interface IPrediction {
+  class_name: string;
+  confidence: number;
+}
+
 export interface INexus extends Document {
   title: string;
   artist: string;
@@ -22,7 +27,7 @@ export interface INexus extends Document {
   art_value_usd: number;
   created_year: string;
   medium: string;
-  tags: string[];
+  tags: IPrediction[];
   user: Types.ObjectId | IArtist;
   available: number;
   price_per_unit: number;

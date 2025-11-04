@@ -1,5 +1,5 @@
 import { model, Schema } from "mongoose";
-import { INexus, IScore } from "./nexus.interface";
+import { INexus, IPrediction, IScore } from "./nexus.interface";
 
 const scoreSchema = new Schema<IScore>(
   {
@@ -7,6 +7,16 @@ const scoreSchema = new Schema<IScore>(
     sentiment_score: { type: Number, required: true },
     memorability_score: { type: Number, required: true },
     art_evaluation_score: { type: Number, required: true },
+  },
+  {
+    _id: false,
+  }
+);
+
+const predictionSchema = new Schema<IPrediction>(
+  {
+    class_name: { type: String, required: true, trim: true },
+    confidence: { type: Number, required: true },
   },
   {
     _id: false,
@@ -24,7 +34,7 @@ const nexusSchema = new Schema<INexus>(
     art_value_usd: { type: Number, required: true },
     created_year: { type: String, required: true, trim: true },
     medium: { type: String, required: true, trim: true },
-    tags: { type: [{ type: String, trim: true }], required: true },
+    tags: { type: [{ type: predictionSchema }], required: true },
     user: {
       type: Schema.Types.ObjectId,
       ref: "User",
