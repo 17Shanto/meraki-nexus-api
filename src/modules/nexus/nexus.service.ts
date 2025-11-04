@@ -1,10 +1,23 @@
+import axios from "axios";
 import AppError from "../../error/AppError";
 import { IArtist, INexus } from "./nexus.interface";
 import Nexus from "./nexus.model";
 
 const createNexus = async (payload: INexus) => {
-  const data = await Nexus.create(payload);
-  return data;
+  const apiUrl = "http://127.0.0.1:8000/nexus-ai/evaluate";
+
+  try {
+    const response = await axios.post(apiUrl, { image_url: payload.image_url });
+    if (response.data.detail) {
+      throw new AppError(404, response.data.detail);
+    } else {
+      payload.tags = response.data.predictions;
+      const data = await Nexus.create(payload);
+      return data;
+    }
+  } catch {
+    throw new AppError(404, "prediction failed due to invalid img_url");
+  }
 };
 
 const getAllNexus = async () => {
