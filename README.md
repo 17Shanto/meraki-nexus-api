@@ -1,4 +1,21 @@
-# Readme File is under updating
+# Reademe file is updating...
+# Miraki Nexus Api - Backend
+
+This repository contains the backend service for an innovative e-commerce platform dedicated to buying and selling artwork.
+The core of this project is a **custom AI model** trained to **automatically evaluate and classify** uploaded artwork into **21 distinct categories**. This backend manages user authentication, artwork uploads, marketplace listings, and secure payment processing.
+
+---
+
+## ✨ Key Features
+
+* **AI-Powered Classification:** Integrates a custom-trained machine learning model to automatically categorize all uploaded artwork.
+* **Marketplace Functionality:** Full API support for users to **upload, browse, buy, and sell** digital or physical art pieces.
+* **Web3 Integration:** All transactions are securely handled using **MetaMask**, allowing users to connect their wallets easily.
+* **Cryptocurrency Payments:** The platform uses **Ethereum (ETH)** as its exclusive currency for all transactions.
+* **Database Management:** Manages all user data, artwork details, classification results, and transaction records.
+
+---
+
 ## The live server will be available at https://meraki-nexus-api.vercel.app/
 
 ---
