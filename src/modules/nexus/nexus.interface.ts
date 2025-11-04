@@ -5,12 +5,12 @@ export interface IArtist {
   lastName: string;
   email: string;
 }
-export interface IScore {
-  aesthetic_score: number;
-  sentiment_score: number;
-  memorability_score: number;
-  art_evaluation_score: number;
-}
+// export interface IScore {
+//   aesthetic_score: number;
+//   sentiment_score: number;
+//   memorability_score: number;
+//   art_evaluation_score: number;
+// }
 
 export interface IPrediction {
   class_name: string;
@@ -21,9 +21,7 @@ export interface INexus extends Document {
   title: string;
   artist: string;
   image_url: string;
-  classification: string;
-  classification_percentage: number;
-  scores: IScore;
+  // scores: IScore;
   art_value_usd: number;
   created_year: string;
   medium: string;

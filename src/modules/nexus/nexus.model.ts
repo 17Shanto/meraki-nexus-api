@@ -1,17 +1,17 @@
 import { model, Schema } from "mongoose";
 import { INexus, IPrediction, IScore } from "./nexus.interface";
 
-const scoreSchema = new Schema<IScore>(
-  {
-    aesthetic_score: { type: Number, required: true },
-    sentiment_score: { type: Number, required: true },
-    memorability_score: { type: Number, required: true },
-    art_evaluation_score: { type: Number, required: true },
-  },
-  {
-    _id: false,
-  }
-);
+// const scoreSchema = new Schema<IScore>(
+//   {
+//     aesthetic_score: { type: Number, required: true },
+//     sentiment_score: { type: Number, required: true },
+//     memorability_score: { type: Number, required: true },
+//     art_evaluation_score: { type: Number, required: true },
+//   },
+//   {
+//     _id: false,
+//   }
+// );
 
 const predictionSchema = new Schema<IPrediction>(
   {
@@ -28,9 +28,7 @@ const nexusSchema = new Schema<INexus>(
     title: { type: String, required: true, trim: true },
     artist: { type: String, required: true, trim: true },
     image_url: { type: String, required: true, trim: true },
-    classification: { type: String, required: true, trim: true },
-    classification_percentage: { type: Number, required: true },
-    scores: { type: scoreSchema, required: true },
+    // scores: { type: scoreSchema, required: true },
     art_value_usd: { type: Number, required: true },
     created_year: { type: String, required: true, trim: true },
     medium: { type: String, required: true, trim: true },
