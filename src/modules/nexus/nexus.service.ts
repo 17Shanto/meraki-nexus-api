@@ -4,7 +4,7 @@ import { IArtist, INexus } from "./nexus.interface";
 import Nexus from "./nexus.model";
 
 const createNexus = async (payload: INexus) => {
-  const apiUrl = "https://meraki-nexus-ai.onrender.com/nexus-ai/evaluate";
+  const apiUrl = "https://meraki-nexus-ai-1.onrender.com/nexus-ai/evaluate";
 
   try {
     const response = await axios.post(apiUrl, { image_url: payload.image_url });
